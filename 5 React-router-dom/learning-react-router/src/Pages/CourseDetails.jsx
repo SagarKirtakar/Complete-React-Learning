@@ -1,7 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useParams } from "react-router-dom";
 
-const Product = () => {
+const CourseDetails = () => {
+  const { id } = useParams();
+
   const courses = [
     {
       id: "JAVA01",
@@ -35,13 +37,16 @@ const Product = () => {
     },
   ];
 
+  const course = courses.find((course) => course.id === id);
+
   return (
     <div>
-      <ul>{courses.map((data) => <div key={data.id}>
-        <li><Link to={`/course/${data.id}`}>{data.courseName}</Link></li>
-      </div>)}</ul>
+      <h1>{course.courseName}</h1>
+      <p>Course ID: {course.id}</p>
+      <p>Price: ₹{course.price}</p>
+      <p>Duration: {course.duration}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Product
+export default CourseDetails;
