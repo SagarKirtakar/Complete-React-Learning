@@ -1,8 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const CourseDetails = () => {
-  const { id } = useParams();
+  // console.log(useParams())
 
   const courses = [
     {
@@ -37,16 +37,28 @@ const CourseDetails = () => {
     },
   ];
 
-  const course = courses.find((course) => course.id === id);
+  const { id } = useParams();
 
-  return (
+  const course_details = courses.find((data) => data.id === id);
+  console.log(course_details);
+
+  return <>
     <div>
-      <h1>{course.courseName}</h1>
-      <p>Course ID: {course.id}</p>
-      <p>Price: ₹{course.price}</p>
-      <p>Duration: {course.duration}</p>
+      <h1>{course_details.courseName}</h1>
+
+      <p>Course ID: {course_details.id}</p>
+      <p>Price: ₹{course_details.price}</p>
+      <p>Duration: {course_details.duration}</p>
     </div>
-  );
+    <button>
+      <Link
+        to="/courses"
+        style={{ textDecoration: "none", color: "blue" }}
+      >
+        All Courses
+      </Link>
+    </button>
+  </>
 };
 
 export default CourseDetails;
