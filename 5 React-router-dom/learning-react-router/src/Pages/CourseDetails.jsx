@@ -1,8 +1,11 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 
 const CourseDetails = () => {
   // console.log(useParams())
+  // console.log(useLocation())
+
+  const location = useLocation();
 
   const courses = [
     {
@@ -45,10 +48,15 @@ const CourseDetails = () => {
   return <>
     <div>
       <h1>{course_details.courseName}</h1>
-
       <p>Course ID: {course_details.id}</p>
-      <p>Price: ₹{course_details.price}</p>
-      <p>Duration: {course_details.duration}</p>
+
+      {location.pathname != '/course/REACTJS05' && (
+        <>
+          <p>Price: ₹{course_details.price}</p>
+          <p>Duration: {course_details.duration}</p>
+        </>
+      )}
+
     </div>
     <button>
       <Link
